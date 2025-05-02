@@ -7,7 +7,7 @@ export default {
     <small style={{ display: 'block', marginTop: '8rem' }}>
       <time>{YEAR}</time> © HΩ
       <div className="footerlinks">
-        <a href="https://forum.horizonomega.org">Forum</a>
+        {/* <a href="https://forum.horizonomega.org">Forum</a> */}
         <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">
           Feedback
         </a>

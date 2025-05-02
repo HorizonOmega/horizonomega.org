@@ -63,3 +63,8 @@ img.next-image {
 .nav-line .nav-link {
   color: #69778c;
 }
+
+/* Hide the duplicate title span rendered by the blog theme on the index page */
+article h1 + div span.nx-cursor-default {
+  display: none;
+}
