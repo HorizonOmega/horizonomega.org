@@ -11,6 +11,10 @@
 		"@astrojs/mdx": "^4.3.4",
 		"astro": "^5.13.5"
 	},
+	"engines": {
+		"node": ">=20.3.0",
+		"npm": ">=9.6.5"
+	},
 	"prettier": {
 		"arrowParens": "always",
 		"singleQuote": true,
