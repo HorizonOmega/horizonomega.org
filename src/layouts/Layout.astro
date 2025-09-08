@@ -9,6 +9,7 @@ export interface Props {
 const { title = 'HΩ', description = 'Advancing AI Safety Through Collaboration' } = Astro.props;
 const year = new Date().getFullYear();
 const currentLocale = Astro.currentLocale || 'en';
+const isFrench = currentLocale === 'fr';
 ---
 
 <!DOCTYPE html>
@@ -30,10 +31,10 @@ const currentLocale = Astro.currentLocale || 'en';
     <small style="display: block;">
       <time>{year}</time> © HΩ
       <div class="footerlinks">
-        <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">Feedback</a>
-        <a href="https://bsky.app/profile/horizonomega.org">Follow on Bluesky</a>
-        <a href="https://horizonomega.substack.com/">Follow on Substack</a>
-        <a href="https://horizonomega.notion.site/Horizon-Omega-Privacy-policy-92dcc814305a405db968dfcf48b70ab6">Privacy policy</a>
+        <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">{isFrench ? 'Commentaires' : 'Feedback'}</a>
+        <a href="https://bsky.app/profile/horizonomega.org">{isFrench ? 'Suivre sur Bluesky' : 'Follow on Bluesky'}</a>
+        <a href="https://horizonomega.substack.com/">{isFrench ? 'Suivre sur Substack' : 'Follow on Substack'}</a>
+        <a href="https://horizonomega.notion.site/Horizon-Omega-Privacy-policy-92dcc814305a405db968dfcf48b70ab6">{isFrench ? 'Politique de confidentialité' : 'Privacy policy'}</a>
       </div>
     </small>
   </body>
