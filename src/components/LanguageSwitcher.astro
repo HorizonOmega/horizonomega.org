@@ -13,10 +13,47 @@ const switchUrl = getRelativeLocaleUrl(switchLocale, targetPath);
 ---
 
 <div class="language-switcher">
-  <a href={switchUrl} aria-label={`Switch to ${switchLabel === 'FR' ? 'French' : 'English'}`}>
+  <a href={switchUrl} aria-label={`Switch to ${switchLabel === 'FR' ? 'French' : 'English'}`} data-locale={switchLocale}>
     {switchLabel}
   </a>
 </div>
+
+<script>
+  // Store language preference when switching
+  document.querySelector('.language-switcher a')?.addEventListener('click', (e) => {
+    const link = e.currentTarget as HTMLAnchorElement;
+    const locale = link.dataset.locale;
+    if (locale) {
+      localStorage.setItem('preferred-locale', locale);
+    }
+  });
+
+  // Check for stored preference on page load and redirect if needed
+  const storedLocale = localStorage.getItem('preferred-locale');
+  const currentLocale = document.documentElement.lang;
+  
+  if (storedLocale && storedLocale !== currentLocale) {
+    // Only redirect if we're not already on the correct locale
+    const pathname = window.location.pathname;
+    let newPath = pathname;
+    
+    if (storedLocale === 'fr') {
+      // Need to go to French version
+      if (!pathname.startsWith('/fr')) {
+        newPath = '/fr' + pathname;
+      }
+    } else {
+      // Need to go to English version
+      if (pathname.startsWith('/fr')) {
+        newPath = pathname.replace(/^\/fr\/?/, '/') || '/';
+      }
+    }
+    
+    if (newPath !== pathname) {
+      window.location.pathname = newPath;
+    }
+  }
+</script>
 
 <style>
   .language-switcher {
