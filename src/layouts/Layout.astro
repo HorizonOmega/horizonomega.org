@@ -172,17 +172,36 @@ const isFrench = currentLocale === 'fr';
   }
   
   .footerlinks {
-    float: right;
+    display: inline-block;
+    margin-left: 0.5rem;
   }
   
   .footerlinks a {
     padding-left: 1rem;
     color: #69778c;
     text-decoration: none;
+    white-space: nowrap;
   }
   
   .footerlinks a:hover {
     text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 768px) {
+    small {
+      text-align: center;
+    }
+    
+    .footerlinks {
+      display: block;
+      margin-top: 0.5rem;
+      margin-left: 0;
+    }
+    
+    .footerlinks a {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+    }
   }
   
   @media screen and (max-width: 480px) {
