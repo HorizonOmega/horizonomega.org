@@ -33,4 +33,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-public/feed.xml
+public/feed.xml.astro/\ndist/\nnode_modules/
