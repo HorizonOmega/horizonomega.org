@@ -1,0 +1,43 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const currentLocale = Astro.currentLocale || 'en';
+const isEnglish = currentLocale === 'en';
+const switchLocale = isEnglish ? 'fr' : 'en';
+const switchLabel = isEnglish ? 'FR' : 'EN';
+
+// Get the current page path without locale
+const currentPath = Astro.url.pathname.replace(/^\/fr\/?/, '/');
+const targetPath = currentPath === '/' ? '' : currentPath;
+const switchUrl = getRelativeLocaleUrl(switchLocale, targetPath);
+---
+
+<div class="language-switcher">
+  <a href={switchUrl} aria-label={`Switch to ${switchLabel === 'FR' ? 'French' : 'English'}`}>
+    {switchLabel}
+  </a>
+</div>
+
+<style>
+  .language-switcher {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+  }
+
+  .language-switcher a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .language-switcher a:hover {
+    background: #555;
+  }
+</style>

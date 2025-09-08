@@ -1,4 +1,6 @@
 ---
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -6,10 +8,11 @@ export interface Props {
 
 const { title = 'HΩ', description = 'Advancing AI Safety Through Collaboration' } = Astro.props;
 const year = new Date().getFullYear();
+const currentLocale = Astro.currentLocale || 'en';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -20,6 +23,7 @@ const year = new Date().getFullYear();
     <title>{title}</title>
   </head>
   <body>
+    <LanguageSwitcher />
     <article>
       <slot />
     </article>
