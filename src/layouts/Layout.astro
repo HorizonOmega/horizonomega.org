@@ -29,12 +29,14 @@ const isFrench = currentLocale === 'fr';
       <slot />
     </article>
     <small style="display: block;">
-      <time>{year}</time> © HΩ
-      <div class="footerlinks">
-        <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">{isFrench ? 'Commentaires' : 'Feedback'}</a>
-        <a href="https://bsky.app/profile/horizonomega.org">{isFrench ? 'Suivre sur Bluesky' : 'Follow on Bluesky'}</a>
-        <a href="https://horizonomega.substack.com/">{isFrench ? 'Suivre sur Substack' : 'Follow on Substack'}</a>
-        <a href="https://horizonomega.notion.site/Horizon-Omega-Privacy-policy-92dcc814305a405db968dfcf48b70ab6">{isFrench ? 'Politique de confidentialité' : 'Privacy policy'}</a>
+      <div class="footer-content">
+        <span class="copyright"><time>{year}</time> © HΩ</span>
+        <span class="footerlinks">
+          <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">{isFrench ? 'Commentaires' : 'Feedback'}</a>
+          <a href="https://bsky.app/profile/horizonomega.org">{isFrench ? 'Suivre sur Bluesky' : 'Follow on Bluesky'}</a>
+          <a href="https://horizonomega.substack.com/">{isFrench ? 'Suivre sur Substack' : 'Follow on Substack'}</a>
+          <a href="https://horizonomega.notion.site/Horizon-Omega-Privacy-policy-92dcc814305a405db968dfcf48b70ab6">{isFrench ? 'Politique de confidentialité' : 'Privacy policy'}</a>
+        </span>
       </div>
     </small>
   </body>
@@ -171,13 +173,26 @@ const isFrench = currentLocale === 'fr';
     font-size: 0.875rem;
   }
   
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .copyright {
+    white-space: nowrap;
+  }
+  
   .footerlinks {
-    display: inline-block;
-    margin-left: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
   .footerlinks a {
-    padding-left: 1rem;
+    padding: 0 0.5rem;
     color: #69778c;
     text-decoration: none;
     white-space: nowrap;
@@ -188,18 +203,17 @@ const isFrench = currentLocale === 'fr';
   }
   
   @media screen and (max-width: 768px) {
-    small {
+    .footer-content {
+      flex-direction: column;
       text-align: center;
+      gap: 0.5rem;
     }
     
     .footerlinks {
-      display: block;
-      margin-top: 0.5rem;
-      margin-left: 0;
+      justify-content: center;
     }
     
     .footerlinks a {
-      display: inline-block;
       padding: 0.25rem 0.5rem;
     }
   }
