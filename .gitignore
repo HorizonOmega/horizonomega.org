@@ -36,3 +36,5 @@ yarn-error.log*
 public/feed.xml.astro/\ndist/\nnode_modules/
 
 .astro
+
+/dist/
