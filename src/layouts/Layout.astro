@@ -28,17 +28,20 @@ const isFrench = currentLocale === 'fr';
     <article>
       <slot />
     </article>
-    <small style="display: block;">
+    <footer>
       <div class="footer-content">
-        <span class="copyright"><time>{year}</time> © HΩ · Canadian not‑for‑profit corporation #1584536-0</span>
-        <span class="footerlinks">
+        <div class="footer-info">
+          <div class="copyright">© {year} HΩ</div>
+          <div class="legal-info">Canadian not‑for‑profit corporation 1584536-0</div>
+        </div>
+        <nav class="footer-links">
           <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">{isFrench ? 'Commentaires' : 'Feedback'}</a>
           <a href="https://bsky.app/profile/horizonomega.org">{isFrench ? 'Suivre sur Bluesky' : 'Follow on Bluesky'}</a>
           <a href="https://horizonomega.substack.com/">{isFrench ? 'Suivre sur Substack' : 'Follow on Substack'}</a>
           <a href="https://horizonomega.notion.site/Horizon-Omega-Privacy-policy-92dcc814305a405db968dfcf48b70ab6">{isFrench ? 'Politique de confidentialité' : 'Privacy policy'}</a>
-        </span>
+        </nav>
       </div>
-    </small>
+    </footer>
   </body>
 </html>
 
@@ -176,14 +179,14 @@ const isFrench = currentLocale === 'fr';
     margin-right: auto;
   }
 
-  /* Footer styles - exactly like Nextra */
-  small {
+  /* Footer styles */
+  footer {
     max-width: 90ch;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-    padding: 0 1rem;
+    margin-top: 5rem;
+    padding: 2rem 1rem 2rem;
+    border-top: 1px solid #e5e7eb;
     color: #737373;
     font-size: 0.875rem;
   }
@@ -191,54 +194,86 @@ const isFrench = currentLocale === 'fr';
   .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
   }
   
   .copyright {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
+    font-weight: 500;
+    color: #525252;
   }
   
-  .footerlinks {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .legal-info {
+    font-size: 0.8125rem;
+    color: #9ca3af;
   }
   
-  .footerlinks a {
-    padding: 0 0.5rem;
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.125rem;
+    justify-content: flex-end;
+  }
+  
+  .footer-links a {
+    padding: 0.375rem 0.75rem;
     color: #737373;
     text-decoration: none;
     white-space: nowrap;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease;
   }
   
-  .footerlinks a:hover {
-    text-decoration: underline;
+  .footer-links a:hover {
+    color: #047857;
+    background: #f3f4f6;
   }
   
-  .footerlinks a:focus-visible {
+  .footer-links a:focus-visible {
     outline: 2px solid #047857;
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 0.375rem;
   }
   
   @media screen and (max-width: 768px) {
+    footer {
+      margin-top: 4rem;
+      padding: 1.5rem 1rem 1.5rem;
+    }
+    
     .footer-content {
       flex-direction: column;
+      align-items: center;
       text-align: center;
-      gap: 0.5rem;
+      gap: 1.5rem;
     }
     
-    .footerlinks {
+    .footer-info {
+      order: 2;
+    }
+    
+    .footer-links {
+      order: 1;
       justify-content: center;
+      gap: 0.25rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .footer-links {
+      flex-direction: column;
+      width: 100%;
     }
     
-    .footerlinks a {
-      padding: 0.25rem 0.5rem;
+    .footer-links a {
+      width: 100%;
+      text-align: center;
     }
   }
   
