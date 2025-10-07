@@ -502,6 +502,55 @@ const isFrench = currentLocale === 'fr';
     font-weight: 500;
   }
   
+  /* Contact section styling */
+  section#contact {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    padding: 2.5rem 2rem;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  
+  section#contact h2 {
+    margin-bottom: 0.75rem;
+    font-size: 1.875rem;
+    letter-spacing: -0.03em;
+  }
+  
+  section#contact p {
+    max-width: 55ch;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.75rem;
+    font-size: 1rem;
+    color: #525252;
+    line-height: 1.6;
+  }
+  
+  section#contact .cta-group {
+    margin-bottom: 0;
+  }
+  
+  @media screen and (max-width: 640px) {
+    section#contact {
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+    
+    section#contact h2 {
+      font-size: 1.625rem;
+    }
+    
+    section#contact p {
+      font-size: 0.9375rem;
+      max-width: 45ch;
+    }
+  }
+  
   
   /* Prose compact */
   .prose-compact p {
