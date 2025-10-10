@@ -12,43 +12,56 @@ const targetPath = currentPath === '/' ? '' : currentPath;
 const switchUrl = getRelativeLocaleUrl(switchLocale, targetPath);
 ---
 
-<div class="language-switcher">
-  <a href={switchUrl} aria-label={`Switch to ${switchLabel === 'FR' ? 'French' : 'English'}`} data-locale={switchLocale}>
+<div class="language-switcher" data-language-switcher-root>
+  <a
+    href={switchUrl}
+    aria-label={`Switch to ${switchLabel === 'FR' ? 'French' : 'English'}`}
+    data-locale={switchLocale}
+  >
     {switchLabel}
   </a>
 </div>
 
-<script>
-  // Store language preference when switching
-  document.querySelector('.language-switcher a')?.addEventListener('click', (e) => {
-    const link = e.currentTarget as HTMLAnchorElement;
-    const locale = link.dataset.locale;
-    if (locale) {
-      localStorage.setItem('preferred-locale', locale);
+<script is:inline>
+  const script = document.currentScript;
+  const container = script?.previousElementSibling;
+  const link = container?.querySelector('a');
+  const storageKey = 'preferred-locale';
+
+  const getStoredLocale = () => {
+    try {
+      return localStorage.getItem(storageKey);
+    } catch {
+      return null;
+    }
+  };
+
+  link?.addEventListener('click', (event) => {
+    const anchor = event.currentTarget as HTMLAnchorElement;
+    const locale = anchor.dataset.locale;
+    if (!locale) return;
+    try {
+      localStorage.setItem(storageKey, locale);
+    } catch {
+      /* ignore write errors */
     }
   });
 
-  // Check for stored preference on page load and redirect if needed
-  const storedLocale = localStorage.getItem('preferred-locale');
+  const storedLocale = getStoredLocale();
   const currentLocale = document.documentElement.lang;
-  
+
   if (storedLocale && storedLocale !== currentLocale) {
-    // Only redirect if we're not already on the correct locale
     const pathname = window.location.pathname;
     let newPath = pathname;
-    
+
     if (storedLocale === 'fr') {
-      // Need to go to French version
       if (!pathname.startsWith('/fr')) {
         newPath = '/fr' + pathname;
       }
-    } else {
-      // Need to go to English version
-      if (pathname.startsWith('/fr')) {
-        newPath = pathname.replace(/^\/fr\/?/, '/') || '/';
-      }
+    } else if (pathname.startsWith('/fr')) {
+      newPath = pathname.replace(/^\/fr\/?/, '/') || '/';
     }
-    
+
     if (newPath !== pathname) {
       window.location.pathname = newPath;
     }
@@ -57,24 +70,34 @@ const switchUrl = getRelativeLocaleUrl(switchLocale, targetPath);
 
 <style>
   .language-switcher {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 100;
+    display: inline-flex;
+    align-items: center;
   }
 
   .language-switcher a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #333;
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    border-radius: 4px;
     font-weight: 600;
-    transition: background 0.2s;
+    transition: background 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
   }
 
   .language-switcher a:hover {
-    background: #555;
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+  }
+
+  .language-switcher a:focus-visible {
+    outline: 2px solid var(--color-outline);
+    outline-offset: 2px;
   }
 </style>
