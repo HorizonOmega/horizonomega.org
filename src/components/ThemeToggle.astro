@@ -1,87 +1,118 @@
+---
+const currentLocale = Astro.currentLocale || 'en';
+const isFrench = currentLocale === 'fr';
+const initialLabel = isFrench ? 'Passer en mode sombre' : 'Switch to dark mode';
+---
+
 <div class="theme-toggle-wrapper" data-theme-toggle-root>
   <button
     class="theme-toggle"
     type="button"
     data-theme-toggle
+    data-locale={currentLocale}
     aria-pressed="false"
-    aria-label="Switch to dark mode"
-    title="Switch to dark mode"
+    aria-label={initialLabel}
+    title={initialLabel}
   >
-    <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+    <svg class="theme-toggle__icon theme-toggle__icon--moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M14 8.5C13.5 10.5 11.5 12 9 12C6 12 3.5 9.5 3.5 6.5C3.5 4 5 2 7 1.5C4.5 2 2.5 4.5 2.5 7.5C2.5 11 5.5 14 9 14C11.5 14 13.5 12.5 14.5 10.5C14.3 9.8 14.2 9.2 14 8.5Z"/>
+    </svg>
+    <svg class="theme-toggle__icon theme-toggle__icon--sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="8" cy="8" r="3.5"/>
+      <line x1="8" y1="0.5" x2="8" y2="2.5"/>
+      <line x1="8" y1="13.5" x2="8" y2="15.5"/>
+      <line x1="15.5" y1="8" x2="13.5" y2="8"/>
+      <line x1="2.5" y1="8" x2="0.5" y2="8"/>
+      <line x1="13.3" y1="2.7" x2="11.9" y2="4.1"/>
+      <line x1="4.1" y1="11.9" x2="2.7" y2="13.3"/>
+      <line x1="13.3" y1="13.3" x2="11.9" y2="11.9"/>
+      <line x1="4.1" y1="4.1" x2="2.7" y2="2.7"/>
+    </svg>
     <span class="theme-toggle__text">Switch theme</span>
   </button>
 </div>
 
 <script is:inline>
-  const storageKey = 'horizonomega-theme';
-  const script = document.currentScript;
-  const container = script?.previousElementSibling;
-  const button = container?.querySelector('[data-theme-toggle]');
-  const icon = container?.querySelector('.theme-toggle__icon');
-  const text = container?.querySelector('.theme-toggle__text');
-  const ICONS = { light: '☀️', dark: '🌙' };
-  const LABELS = {
-    light: 'Switch to dark mode',
-    dark: 'Switch to light mode'
-  };
+  (function() {
+    const storageKey = 'horizonomega-theme';
+    const button = document.querySelector('[data-theme-toggle]');
+    const moonIcon = document.querySelector('.theme-toggle__icon--moon');
+    const sunIcon = document.querySelector('.theme-toggle__icon--sun');
+    const text = document.querySelector('.theme-toggle__text');
+    const locale = button?.dataset?.locale || 'en';
+    const isFrench = locale === 'fr';
+    const LABELS = isFrench ? {
+      dark: 'Passer en mode sombre',
+      light: 'Passer en mode clair'
+    } : {
+      dark: 'Switch to dark mode',
+      light: 'Switch to light mode'
+    };
 
-  const getTheme = () =>
-    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    const getTheme = () =>
+      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 
-  const applyTheme = (theme, persist = true) => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    if (persist) {
-      try {
-        localStorage.setItem(storageKey, theme);
-      } catch {
-        /* ignore write errors */
+    const applyTheme = (theme, persist = true) => {
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      if (persist) {
+        try {
+          localStorage.setItem(storageKey, theme);
+        } catch {
+          /* ignore write errors */
+        }
       }
-    }
-  };
+    };
 
-  const updateToggleUI = (theme) => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    if (button) {
-      button.setAttribute('aria-pressed', theme === 'dark');
-      button.dataset.nextTheme = nextTheme;
-      button.setAttribute('aria-label', LABELS[nextTheme]);
-      button.title = LABELS[nextTheme];
-    }
-    if (icon) {
-      icon.textContent = ICONS[nextTheme];
-    }
-    if (text) {
-      text.textContent = LABELS[nextTheme];
-    }
-  };
+    const updateToggleUI = (theme) => {
+      const nextTheme = theme === 'dark' ? 'light' : 'dark';
+      if (button) {
+        button.setAttribute('aria-pressed', theme === 'dark');
+        button.dataset.nextTheme = nextTheme;
+        button.setAttribute('aria-label', LABELS[nextTheme]);
+        button.title = LABELS[nextTheme];
+      }
+      if (moonIcon && sunIcon) {
+        if (nextTheme === 'dark') {
+          moonIcon.style.display = 'block';
+          sunIcon.style.display = 'none';
+        } else {
+          moonIcon.style.display = 'none';
+          sunIcon.style.display = 'block';
+        }
+      }
+      if (text) {
+        text.textContent = LABELS[nextTheme];
+      }
+    };
 
-  updateToggleUI(getTheme());
-
-  button?.addEventListener('click', () => {
-    const nextTheme = button.dataset.nextTheme === 'dark' ? 'dark' : 'light';
-    applyTheme(nextTheme);
-    updateToggleUI(nextTheme);
-  });
-
-  const observer = new MutationObserver(() => {
     updateToggleUI(getTheme());
-  });
 
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme']
-  });
+    button?.addEventListener('click', () => {
+      const nextTheme = button.dataset.nextTheme === 'dark' ? 'dark' : 'light';
+      applyTheme(nextTheme);
+      updateToggleUI(nextTheme);
+    });
 
-  window.addEventListener('beforeunload', () => observer.disconnect());
+    const observer = new MutationObserver(() => {
+      updateToggleUI(getTheme());
+    });
 
-  window.addEventListener('storage', (event) => {
-    if (event.key === storageKey) {
-      const theme = event.newValue === 'dark' ? 'dark' : 'light';
-      applyTheme(theme, false);
-      updateToggleUI(theme);
-    }
-  });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    window.addEventListener('beforeunload', () => observer.disconnect());
+
+    window.addEventListener('storage', (event) => {
+      if (event.key === storageKey) {
+        const theme = event.newValue === 'dark' ? 'dark' : 'light';
+        applyTheme(theme, false);
+        updateToggleUI(theme);
+      }
+    });
+  })();
 </script>
 
 
@@ -115,13 +146,22 @@
   }
 
   .theme-toggle__icon {
-    font-size: 1.05rem;
-    line-height: 1;
+    display: block;
+    width: 16px;
+    height: 16px;
     transition: transform 0.2s ease;
   }
 
   .theme-toggle:hover .theme-toggle__icon {
     transform: scale(1.05);
+  }
+  
+  .theme-toggle__icon--sun {
+    display: none;
+  }
+  
+  .theme-toggle__icon--moon {
+    display: block;
   }
 
   .theme-toggle__text {

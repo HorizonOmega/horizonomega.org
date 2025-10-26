@@ -37,8 +37,8 @@ const switchUrl = getRelativeLocaleUrl(switchLocale, targetPath);
   };
 
   link?.addEventListener('click', (event) => {
-    const anchor = event.currentTarget as HTMLAnchorElement;
-    const locale = anchor.dataset.locale;
+    const anchor = event.currentTarget;
+    const locale = anchor?.dataset?.locale;
     if (!locale) return;
     try {
       localStorage.setItem(storageKey, locale);
@@ -87,7 +87,7 @@ const switchUrl = getRelativeLocaleUrl(switchLocale, targetPath);
     font-weight: 600;
     transition: background 0.2s ease, color 0.2s ease,
       border-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   }
 
   .language-switcher a:hover {
