@@ -213,8 +213,8 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
   
   .site-toolbar {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: calc(1rem + env(safe-area-inset-top));
+    right: calc(1rem + env(safe-area-inset-right));
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -231,8 +231,8 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
   
   @media (max-width: 480px) {
     .site-toolbar {
-      top: 0.75rem;
-      right: 0.75rem;
+      top: calc(0.75rem + env(safe-area-inset-top));
+      right: calc(0.75rem + env(safe-area-inset-right));
       gap: 0.5rem;
     }
   }
@@ -269,7 +269,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     margin-right: auto;
     padding-top: 4rem;
     padding-bottom: 3rem;
-    padding-right: 4rem;
+    padding-inline: 4rem;
     display: block;
     flex: 1;
     
@@ -333,7 +333,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
 
   /* Footer styles */
   footer {
-    max-width: 90ch;
+    max-width: 85ch;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5rem;
@@ -426,6 +426,8 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     .footer-links a {
       width: 100%;
       text-align: center;
+      white-space: normal;
+      overflow-wrap: break-word;
     }
   }
   
@@ -433,7 +435,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     article {
       padding-top: 2rem;
       padding-bottom: 4rem;
-      padding-right: 1rem;
+      padding-inline: 1rem;
     }
   }
   
