@@ -506,7 +506,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
   
   article section h2 {
     font-size: 2.25rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.25rem;
     padding-top: 0;
     letter-spacing: -0.035em;
     font-variation-settings: 'wght' 750;
@@ -750,47 +750,104 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     letter-spacing: 0.03em;
     color: var(--color-text-primary);
     text-transform: uppercase;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     margin-top: 0;
   }
   
-  .testimonials blockquote {
-    margin: 0 0 1rem 0;
-    padding-left: 1rem;
-    border-left: 2px solid var(--color-border);
-    font-size: 0.875rem;
-    line-height: 1.65;
-    font-style: normal;
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 2.5rem;
+  }
+  
+  .testimonial {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.5rem;
+    align-items: start;
+    font-size: 0.9375rem;
+    line-height: 1.6;
     color: var(--color-text-strong);
+    font-style: italic;
+    min-width: 0;
+    padding-left: 0;
   }
   
-  .testimonials blockquote:last-child {
-    margin-bottom: 0;
+  .testimonial::before {
+    content: '"';
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-text-tertiary);
+    font-style: normal;
+    opacity: 0.4;
   }
   
-  .testimonials blockquote strong {
-    font-weight: 600;
-    color: var(--color-text-primary);
+  .testimonial cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.625rem;
+    font-weight: 500;
+  }
+  
+  .testimonial cite::before {
+    content: '— ';
+    color: var(--color-text-tertiary);
+  }
+  
+  @media screen and (max-width: 900px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1.25rem;
+    }
+    
+    .testimonial {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      column-gap: 0.375rem;
+    }
+    
+    .testimonial::before {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
   }
   
   @media screen and (max-width: 640px) {
     .testimonials {
-      margin-top: 2rem;
-      padding-top: 1.75rem;
-    }
-    
-    .testimonials blockquote {
-      font-size: 0.9375rem;
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
-      padding-left: 1.125rem;
-      padding-right: 0.25rem;
-      border-left-width: 3px;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
     }
     
     .testimonials h3 {
       font-size: 0.8125rem;
-      margin-bottom: 1.125rem;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    
+    .testimonial {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      column-gap: 0.375rem;
+    }
+    
+    .testimonial::before {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    
+    .testimonial cite {
+      font-size: 0.75rem;
+      margin-top: 0.375rem;
     }
   }
   
