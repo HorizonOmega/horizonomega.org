@@ -176,7 +176,21 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     --color-text-on-accent: #0a0a0a;
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+  }
+
   body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     font-family: 'Inter var', system-ui, -apple-system, BlinkMacSystemFont,
       'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -192,28 +206,34 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     color: var(--color-text-primary);
     padding-left: 1rem;
     padding-right: 1rem;
-    margin: 0;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   
   .site-toolbar {
-    position: fixed;
+    position: absolute;
     top: 1rem;
     right: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    z-index: 120;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    z-index: 1000;
+    pointer-events: none;
+    line-height: 0;
+  }
+  
+  .site-toolbar > * {
+    pointer-events: auto;
+    line-height: normal;
   }
   
   @media (max-width: 480px) {
     .site-toolbar {
+      top: 0.75rem;
       right: 0.75rem;
       gap: 0.5rem;
-      flex-direction: column;
-      align-items: stretch;
     }
   }
   
@@ -758,8 +778,17 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     }
     
     .testimonials blockquote {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      padding-left: 1.125rem;
+      padding-right: 0.25rem;
+      border-left-width: 3px;
+    }
+    
+    .testimonials h3 {
       font-size: 0.8125rem;
-      margin-bottom: 0.875rem;
+      margin-bottom: 1.125rem;
     }
   }
   
