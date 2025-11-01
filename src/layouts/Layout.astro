@@ -88,6 +88,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
           <div class="legal-info">Canadian not‑for‑profit corporation 1584536-0</div>
         </div>
         <nav class="footer-links">
+          <a href="https://donate.stripe.com/14A5kCbHz5MFgGo3cG9ws06" rel="noopener noreferrer" target="_blank">{isFrench ? 'Faire un don' : 'Donate'}</a>
           <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">{isFrench ? 'Commentaires' : 'Feedback'}</a>
           <a href="https://bsky.app/profile/horizonomega.org">{isFrench ? 'Suivre sur Bluesky' : 'Follow on Bluesky'}</a>
           <a href="https://horizonomega.substack.com/">{isFrench ? 'Suivre sur Substack' : 'Follow on Substack'}</a>
@@ -644,6 +645,12 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
   
   .acknowledgements-table a:hover {
     text-decoration: underline;
+  }
+  
+  .acknowledgements-note {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
   }
   
   @media screen and (max-width: 640px) {
