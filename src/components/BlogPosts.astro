@@ -1,0 +1,19 @@
+---
+import { fetchSubstackPosts, formatDate } from '../utils/rss';
+
+const currentLocale = Astro.currentLocale || 'en';
+const allPosts = await fetchSubstackPosts(20);
+const posts = allPosts.filter(p => p.title !== 'Introducing Horizon Events');
+---
+
+<ul class="blog-list">
+  {posts.map((post) => (
+    <li>
+      <a href={post.url} class="blog-item" target="_blank" rel="noopener noreferrer">
+        <span class="blog-title">{post.title}</span>
+        <span class="blog-date">{formatDate(post.date, currentLocale)}</span>
+      </a>
+    </li>
+  ))}
+</ul>
+
