@@ -92,7 +92,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
           <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form">{isFrench ? 'Commentaires' : 'Feedback'}</a>
           <a href="https://bsky.app/profile/horizonomega.org">{isFrench ? 'Suivre sur Bluesky' : 'Follow on Bluesky'}</a>
           <a href="https://horizonomega.substack.com/">{isFrench ? 'Suivre sur Substack' : 'Follow on Substack'}</a>
-          <a href="https://horizonomega.notion.site/Horizon-Omega-Privacy-policy-92dcc814305a405db968dfcf48b70ab6">{isFrench ? 'Politique de confidentialité' : 'Privacy policy'}</a>
+          <a href={isFrench ? '/fr/privacy' : '/privacy'}>{isFrench ? 'Politique de confidentialité' : 'Privacy policy'}</a>
         </nav>
       </div>
     </footer>
@@ -913,6 +913,61 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
     .editorial-grid {
       grid-template-columns: 1fr;
       gap: 1.25rem;
+    }
+  }
+  
+  /* Policy page styles */
+  .policy-meta {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .policy-footer {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.875rem;
+  }
+  
+  article th,
+  article td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  article th {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: var(--color-surface-muted);
+  }
+  
+  article td {
+    color: var(--color-text-secondary);
+  }
+  
+  article tr:last-child td {
+    border-bottom: none;
+  }
+  
+  @media screen and (max-width: 640px) {
+    article table {
+      font-size: 0.75rem;
+    }
+    
+    article th,
+    article td {
+      padding: 0.5rem 0.625rem;
     }
   }
   
