@@ -1,0 +1,104 @@
+[
+  {
+    "id": "neurips-2022",
+    "year": 2022,
+    "conference": "NeurIPS 2022",
+    "date": "November 28, 2022",
+    "location": "New Orleans, LA",
+    "venue": "Near Convention Center",
+    "participants": 85,
+    "organizations": [
+      "Mila", "Stanford", "Anthropic", "OpenAI", "UC Berkeley", "U Toronto",
+      "ETH Zurich", "Max Planck Institute", "Cambridge", "Vector Institute",
+      "NYU", "DeepMind", "Oxford", "MIT"
+    ],
+    "organizers": ["Orpheus Lummis", "Mauricio H. Luduena"],
+    "partners": ["Center for AI Safety"],
+    "funders": ["Nisan Stiennon"],
+    "lightningTalks": [
+      { "speaker": "Haydn Belfield", "title": "What standard-setting in EU + US might mean for AI safety" },
+      { "speaker": "Esben Kran", "title": "Hackathons in AI safety research" },
+      { "speaker": "Franziska Boenisch", "title": "Privacy attacks against federated learning" },
+      { "speaker": "Aaron Tucker", "title": "Bandits with Costly Reward Observations" },
+      { "speaker": "Lewis Hammond", "title": "Cooperative AI" },
+      { "speaker": "Adam Dziedzic", "title": "Stealing and defending self-supervised models" },
+      { "speaker": "David Lindner", "title": "Active Learning for Reward Modelling" },
+      { "speaker": "Lauro Langosco di Langosco", "title": "An empirical demonstration of deceptive alignment" },
+      { "speaker": "Zhijing Jin", "title": "Causally aligning language models" }
+    ],
+    "discussions": [
+      { "facilitator": "Haydn Belfield", "topic": "AI governance" },
+      { "facilitator": "Adam Dziedzic", "topic": "Is this model mine? On stealing and defending machine learning models" },
+      { "facilitator": "Lewis Hammond", "topic": "Cooperative AI" },
+      { "facilitator": "Lauro Langosco di Langosco", "topic": "Deceptive alignment" }
+    ],
+    "testimonials": [
+      {
+        "quote": "This was a fascinating event that was helpful for keeping up with the cutting edge of the field, and for launching collaborations.",
+        "author": "Haydn Belfield"
+      },
+      {
+        "quote": "The AI safety unconference was very useful to meet and talk with the AI safety researchers at NeurIPS.",
+        "author": "Esben Kran"
+      },
+      {
+        "quote": "It was very reassuring to hear that diverse perspectives on AI risk are being studied seriously, including criticism of the AI safety community.",
+        "author": "Arvind Raghavan"
+      }
+    ],
+    "archiveUrl": "https://www.lesswrong.com/posts/QKdcHjoAfPJrZuFJk/ai-safety-unconference-neurips-2022"
+  },
+  {
+    "id": "neurips-2019",
+    "year": 2019,
+    "conference": "NeurIPS 2019",
+    "date": "December 9, 2019",
+    "location": "Vancouver, BC",
+    "venue": "The Pace, 520 Alexander St",
+    "participants": 50,
+    "organizations": ["OpenAI", "DeepMind", "Cambridge", "MIRI", "Mila", "FLI"],
+    "organizers": ["David Krueger (Mila)", "Orpheus Lummis (EA Québec)", "Gretchen Krueger (OpenAI)", "Richard Mallah (FLI)", "Joe Collman"],
+    "partners": [],
+    "funders": ["Effective Altruism Foundation", "Survival and Flourishing Fund", "Future of Life Institute"],
+    "lightningTalks": [],
+    "discussions": [],
+    "testimonials": [],
+    "archiveUrl": "https://web.archive.org/web/20210131071209/https://aisafetyunconference.info/"
+  },
+  {
+    "id": "neurips-2018",
+    "year": 2018,
+    "conference": "NeurIPS 2018",
+    "date": "December 8, 2018",
+    "location": "Montréal, QC",
+    "venue": "Desjardins Lab, 175 René-Lévesque Blvd W",
+    "participants": 50,
+    "organizations": [
+      "UC Berkeley", "Vector Institute", "Mila", "OpenAI", "DeepMind",
+      "Oxford", "CHAI", "McGill", "NYU", "Partnership on AI"
+    ],
+    "organizers": ["Orpheus Lummis (EA Québec)", "Vaughn DiMarco (MTLDATA)", "David Krueger (Mila)"],
+    "partners": ["MAIC"],
+    "funders": ["Long-Term Future Fund (EA Funds)", "Future of Life Institute", "Nexalogy"],
+    "lightningTalks": [
+      { "speaker": "Adam Gleave", "title": null },
+      { "speaker": "Jan Leike", "title": null },
+      { "speaker": "David Krueger", "title": null },
+      { "speaker": "Dan Hendrycks", "title": null },
+      { "speaker": "Aaron Tucker", "title": null },
+      { "speaker": "Victoria Krakovna", "title": null }
+    ],
+    "discussions": [],
+    "testimonials": [
+      {
+        "quote": "A great way to meet the best people in the area and propel daring ideas forward.",
+        "author": "Stuart Armstrong"
+      },
+      {
+        "quote": "The event was a great place to meet others with shared research interests. I particularly enjoyed the small discussion groups that exposed me to new perspectives.",
+        "author": "Adam Gleave"
+      }
+    ],
+    "archiveUrl": "https://web.archive.org/web/20181202025728/https://aisafetyunconference.info/"
+  }
+]
