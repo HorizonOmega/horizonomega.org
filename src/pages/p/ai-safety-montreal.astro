@@ -1,0 +1,233 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import events from '../../data/montreal-events.json';
+
+type MtlEvent = {
+  id: string;
+  date: string;
+  endDate?: string;
+  title: string;
+  time: string;
+  speakers?: string[];
+  tags?: string[];
+  description: string;
+  links?: { label: string; url: string }[];
+};
+
+const allEvents = events as MtlEvent[];
+
+// Group by year
+const eventsByYear = allEvents.reduce((acc, event) => {
+  const year = event.date.split('-')[0];
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(event);
+  return acc;
+}, {} as Record<string, MtlEvent[]>);
+
+const years = Object.keys(eventsByYear).sort((a, b) => parseInt(b) - parseInt(a));
+
+const formatDate = (dateStr: string, endDateStr?: string) => {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const [year, month, day] = dateStr.split('-');
+  const monthName = months[parseInt(month) - 1];
+  
+  if (endDateStr) {
+    const [endYear, endMonth, endDay] = endDateStr.split('-');
+    if (month === endMonth) {
+      return `${monthName} ${parseInt(day)}–${parseInt(endDay)}`;
+    }
+    const endMonthName = months[parseInt(endMonth) - 1];
+    return `${monthName} ${parseInt(day)}–${endMonthName} ${parseInt(endDay)}`;
+  }
+  
+  return `${monthName} ${parseInt(day)}`;
+};
+---
+
+<Layout title="AI Safety in Montréal – HΩ">
+  <h1>AI Safety in Montréal</h1>
+  
+  <p class="project-meta-header">Since 2025 · 1600+ members</p>
+  
+  <p class="lead">Local field-building hub serving the Montréal AI safety, ethics & governance community. We organize meetups, coworking sessions, targeted workshops, advising, and collaborations.</p>
+  
+  <hr />
+  
+  <section>
+    <h2>About</h2>
+    <p>Montréal is home to one of the world's largest AI research ecosystems, anchored by Mila and surrounded by leading labs and startups. AI Safety in Montréal builds the local community of researchers, practitioners, and advocates working to ensure AI development benefits humanity.</p>
+    <p>We co-run the Mila AI safety reading group (biweekly sessions with 10–20 researchers) and serve members across AI safety, ethics, and governance.</p>
+  </section>
+  
+  <section>
+    <h2>What we do</h2>
+    
+    <div class="editorial-grid">
+      <div class="editorial-item">
+        <strong>Meetups</strong> Regular community gatherings for AI safety researchers and practitioners in Montréal.
+      </div>
+      
+      <div class="editorial-item">
+        <strong>Coworking sessions</strong> Focused work sessions for those working on AI safety projects.
+      </div>
+      
+      <div class="editorial-item">
+        <strong>Reading group</strong> Biweekly sessions at Mila discussing recent AI safety research with 10–20 researchers.
+      </div>
+      
+      <div class="editorial-item">
+        <strong>Workshops</strong> Targeted sessions on specific topics, from technical alignment to AI governance.
+      </div>
+      
+      <div class="editorial-item">
+        <strong>Advising</strong> One-on-one guidance for those looking to enter or advance in AI safety.
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Past events</h2>
+
+    {years.map(year => (
+      <div class="events-year">
+        <h3 class="year-heading">{year}</h3>
+        <div class="events-grid">
+          {eventsByYear[year].map(event => (
+            <div class="event-item">
+              <div class="event-date">{formatDate(event.date, event.endDate)}</div>
+              <div class="event-content">
+                <h4>{event.title}</h4>
+                {event.speakers && event.speakers.length > 0 && (
+                  <p class="event-speaker">
+                    {event.speakers.join(', ')}
+                  </p>
+                )}
+                <p class="event-description">{event.description}</p>
+                {event.links && event.links.length > 0 && (
+                  <div class="event-links">
+                    {event.links.map(link => (
+                      <a href={link.url} class="link-resource" target="_blank" rel="noopener noreferrer">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+  
+  <section>
+    <h2>Join the community</h2>
+    <a href="https://aisafetymontreal.org" class="btn" target="_blank" rel="noopener noreferrer">Visit aisafetymontreal.org ↗</a>
+  </section>
+</Layout>
+
+<style>
+  .lead {
+    margin-bottom: 0;
+  }
+  
+  .year-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 2.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .events-year:first-of-type .year-heading {
+    margin-top: 1rem;
+  }
+  
+  .events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .event-item {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .event-date {
+    min-width: 4.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    padding-top: 0.125rem;
+  }
+  
+  .event-content {
+    flex: 1;
+  }
+  
+  .event-content h4 {
+    font-size: 1rem;
+    font-variation-settings: 'wght' 600;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.4;
+  }
+  
+  .event-speaker {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .event-description {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-tertiary);
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .event-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .event-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease;
+    color: var(--color-text-muted);
+  }
+  
+  .event-links a svg {
+    flex-shrink: 0;
+  }
+  
+  .event-links a:hover {
+    color: var(--color-text-primary);
+    background: var(--color-surface-hover);
+  }
+  
+  @media (max-width: 640px) {
+    .event-item {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .event-date {
+      min-width: auto;
+    }
+  }
+</style>
