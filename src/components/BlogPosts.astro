@@ -2,8 +2,9 @@
 import { fetchSubstackPosts, formatDate } from '../utils/rss';
 
 const currentLocale = Astro.currentLocale || 'en';
-const allPosts = await fetchSubstackPosts(20);
-const posts = allPosts.filter(p => p.title !== 'Introducing Horizon Events');
+const isFrench = currentLocale === 'fr';
+const allPosts = await fetchSubstackPosts(10);
+const posts = allPosts.filter(p => p.title !== 'Introducing Horizon Events').slice(0, 5);
 ---
 
 <ul class="blog-list">
@@ -16,4 +17,7 @@ const posts = allPosts.filter(p => p.title !== 'Introducing Horizon Events');
     </li>
   ))}
 </ul>
+<a href="https://horizonomega.substack.com/" class="blog-more" target="_blank" rel="noopener noreferrer">
+  {isFrench ? 'Voir tous les articles →' : 'View all posts →'}
+</a>
 
