@@ -21,7 +21,7 @@ const localePath = isFrench ? '/fr' : '';
 
 const navLinks = [
   { href: `${localePath || '/'}#projects`, label: isFrench ? 'Projets' : 'Projects' },
-  { href: `${localePath}/get-involved`, label: isFrench ? 'S\'impliquer' : 'Get Involved' },
+  { href: `${localePath}/connect`, label: isFrench ? 'Connecter' : 'Connect' },
   { href: `${localePath}/acknowledgements`, label: isFrench ? 'Remerciements' : 'Acknowledgements' },
   { href: 'https://horizonomega.substack.com/', label: 'Blog', external: true },
 ];
@@ -121,7 +121,12 @@ const navLinks = [
                 {isFrench ? 'Faire un don' : 'Donate'}
               </a>
               <a href="https://airtable.com/app2x6pt40F3Xkisy/pagBCOPJWd7KSWe1d/form" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 {isFrench ? 'Commentaires' : 'Feedback'}
+              </a>
+              <a href={isFrench ? '/fr/connect' : '/connect'}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                {isFrench ? 'Participer' : 'Get involved'}
               </a>
             </nav>
           </div>
@@ -129,13 +134,17 @@ const navLinks = [
           <div class="footer-group">
             <h4 class="footer-heading">{isFrench ? 'Suivre' : 'Connect'}</h4>
             <nav class="footer-nav">
-              <a href="https://bsky.app/profile/horizonomega.org" target="_blank" rel="noopener noreferrer">
-                <svg width="16" height="16" viewBox="0 0 568 501" fill="currentColor"><path d="M123.121 33.664C188.241 82.553 258.281 181.68 284 234.873c25.719-53.192 95.759-152.32 160.879-201.21C491.866-1.611 568-28.906 568 57.947c0 17.346-9.945 145.713-15.778 166.555-20.275 72.453-94.155 90.933-159.875 79.748C507.222 323.8 536.444 388.56 473.333 453.32c-119.86 122.992-172.272-30.859-185.702-70.281-2.462-7.227-3.614-10.608-3.631-7.733-.017-2.875-1.169.506-3.631 7.733-13.43 39.422-65.842 193.273-185.702 70.281-63.111-64.76-33.89-129.52 80.986-149.071-65.72 11.185-139.6-7.295-159.875-79.748C9.945 203.659 0 75.291 0 57.946 0-28.906 76.135-1.612 123.121 33.664Z"/></svg>
-                Bluesky
+              <a href="mailto:team@horizonomega.org">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                {isFrench ? 'Courriel' : 'Email'}
               </a>
               <a href="https://horizonomega.substack.com/" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
-                Substack
+                {isFrench ? 'S\'abonner' : 'Subscribe'}
+              </a>
+              <a href="https://bsky.app/profile/horizonomega.org" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 568 501" fill="currentColor"><path d="M123.121 33.664C188.241 82.553 258.281 181.68 284 234.873c25.719-53.192 95.759-152.32 160.879-201.21C491.866-1.611 568-28.906 568 57.947c0 17.346-9.945 145.713-15.778 166.555-20.275 72.453-94.155 90.933-159.875 79.748C507.222 323.8 536.444 388.56 473.333 453.32c-119.86 122.992-172.272-30.859-185.702-70.281-2.462-7.227-3.614-10.608-3.631-7.733-.017-2.875-1.169.506-3.631 7.733-13.43 39.422-65.842 193.273-185.702 70.281-63.111-64.76-33.89-129.52 80.986-149.071-65.72 11.185-139.6-7.295-159.875-79.748C9.945 203.659 0 75.291 0 57.946 0-28.906 76.135-1.612 123.121 33.664Z"/></svg>
+                Bluesky
               </a>
             </nav>
           </div>
@@ -187,7 +196,7 @@ const navLinks = [
     --color-text-primary: #0a0a0a;
     --color-text-secondary: #404040;
     --color-text-tertiary: #666666;
-    --color-text-muted: #737373;
+    --color-text-muted: #636363;
     --color-text-strong: #1a1a1a;
     --color-text-subtle: #999999;
     --color-card-text: #262626;
@@ -217,7 +226,7 @@ const navLinks = [
     --color-text-primary: #fafafa;
     --color-text-secondary: #d4d4d4;
     --color-text-tertiary: #a3a3a3;
-    --color-text-muted: #8c8c8c;
+    --color-text-muted: #9a9a9a;
     --color-text-strong: #e5e5e5;
     --color-text-subtle: #737373;
     --color-card-text: #e5e5e5;
@@ -283,7 +292,7 @@ const navLinks = [
   }
   
   .site-logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-variation-settings: 'wght' 800;
     letter-spacing: -0.03em;
     color: var(--color-text-primary);
@@ -346,7 +355,7 @@ const navLinks = [
     }
     
     .site-logo {
-      font-size: 1.25rem;
+      font-size: 1.75rem;
     }
     
     .site-nav {
@@ -480,7 +489,7 @@ const navLinks = [
   }
   
   .footer-logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-variation-settings: 'wght' 800;
     letter-spacing: -0.03em;
     color: var(--color-text-primary);
@@ -495,7 +504,7 @@ const navLinks = [
   
   .footer-tagline {
     font-size: 0.875rem;
-    color: var(--color-text-muted);
+    color: var(--color-text-tertiary);
     margin: 0;
     line-height: 1.4;
   }
@@ -654,6 +663,23 @@ const navLinks = [
     letter-spacing: -0.05em;
     font-variation-settings: 'wght' 800;
   }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .hero-title-horizon {
+    font-variation-settings: 'wght' 500;
+    color: var(--color-text-strong);
+  }
+
+  .hero-title-omega {
+    font-variation-settings: 'wght' 750;
+    color: var(--color-text-primary);
+  }
   
   .hero-tagline {
     font-size: 1.25rem;
@@ -707,9 +733,16 @@ const navLinks = [
   article section h2 {
     font-size: 2.25rem;
     margin-bottom: 1.25rem;
-    padding-top: 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
     letter-spacing: -0.035em;
     font-variation-settings: 'wght' 750;
+  }
+  
+  /* First section doesn't need top border */
+  article section:first-of-type h2 {
+    border-top: none;
+    padding-top: 0;
   }
   
   article section h3 {
@@ -724,8 +757,8 @@ const navLinks = [
   article section#ce-quon-fait,
   article section#track-record,
   article section#bilan,
-  article section#get-involved,
-  article section#impliquez-vous {
+  article section#connect,
+  article section#connecter {
     margin-bottom: 4rem;
   }
   
@@ -867,23 +900,22 @@ const navLinks = [
     }
   }
   
-  /* Contact section styling */
-  section#contact {
-    margin-bottom: 3rem;
-  }
-  
-  section#contact p {
+  /* Connect section styling */
+  section#connect p,
+  section#connecter p {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--color-text-strong);
     margin-bottom: 1.5rem;
   }
   
-  section#contact .btn {
+  section#connect .btn,
+  section#connecter .btn {
     margin-right: 0.75rem;
   }
   
-  section#contact .btn:last-child {
+  section#connect .btn:last-child,
+  section#connecter .btn:last-child {
     margin-right: 0;
   }
   
@@ -1016,6 +1048,19 @@ const navLinks = [
     color: var(--color-text-muted);
     white-space: nowrap;
     flex-shrink: 0;
+  }
+
+  .blog-more {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .blog-more:hover {
+    color: var(--color-text-primary);
   }
 
   @media screen and (max-width: 600px) {
@@ -1226,6 +1271,15 @@ const navLinks = [
     outline-offset: 3px;
   }
   
+  .btn-primary {
+    background: var(--color-text-primary);
+    color: var(--color-bg) !important;
+  }
+  
+  .btn-primary:hover {
+    background: var(--color-text-secondary);
+  }
+  
   @media screen and (max-width: 640px) {
     .btn {
       display: block;
@@ -1234,7 +1288,8 @@ const navLinks = [
       margin-bottom: 0.75rem;
     }
     
-    section#contact .btn {
+    section#connect .btn,
+    section#connecter .btn {
       margin-right: 0;
     }
   }
@@ -1246,7 +1301,17 @@ const navLinks = [
     }
   }
   
-  /* Project page header meta */
+  /* Page header meta (dates, stats) */
+  .page-meta {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  
+  /* Variant for project pages with negative top margin */
   .project-meta-header {
     font-size: 0.875rem;
     font-weight: 500;
@@ -1284,20 +1349,18 @@ const navLinks = [
     color: var(--color-text-secondary);
   }
   
-  .seminars-list hr {
+  /* Horizontal rules */
+  article hr {
     border: none;
     border-top: 1px solid var(--color-border);
+    margin: 2.5rem 0;
+  }
+
+  .seminars-list hr {
     margin: 2rem 0;
   }
 
   /* Policy page styles */
-  .policy-meta {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-top: 0;
-    margin-bottom: 2rem;
-  }
-  
   .policy-footer {
     font-size: 0.875rem;
     color: var(--color-text-muted);
@@ -1364,6 +1427,11 @@ const navLinks = [
     
     .hero h1 {
       font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-title {
+      font-size: 1.5rem;
       margin-bottom: 1.5rem;
     }
     
