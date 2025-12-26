@@ -13,14 +13,14 @@ const isFrench = currentLocale === 'fr';
 
 const defaultDescription = isFrench
   ? 'Le progrès de la sûreté de l\'IA par la collaboration, la recherche et l\'éducation'
-  : 'Reducing risks from AI through collaboration, research, and education';
+  : 'We advance AI safety through collaboration, research, and education';
 
 const { title = 'HΩ', description = defaultDescription } = Astro.props;
 
 const localePath = isFrench ? '/fr' : '';
 
 const navLinks = [
-  { href: `${localePath || '/'}#projects`, label: isFrench ? 'Projets' : 'Projects' },
+  { href: `${localePath}/projects`, label: isFrench ? 'Projets' : 'Projects' },
   { href: `${localePath}/connect`, label: isFrench ? 'Connecter' : 'Connect' },
   { href: `${localePath}/acknowledgements`, label: isFrench ? 'Remerciements' : 'Acknowledgements' },
   { href: 'https://horizonomega.substack.com/', label: 'Blog', external: true },
@@ -414,6 +414,14 @@ const navLinks = [
     line-height: 1.7;
   }
 
+  /* Page title */
+  article h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'wght' 850;
+  }
+
   /* Nextra prose styles */
   article p {
     margin-top: 1.25em;
@@ -638,9 +646,7 @@ const navLinks = [
       justify-content: center;
       gap: 0.25rem 1rem;
     }
-  }
-  
-  @media screen and (max-width: 480px) {
+    
     article {
       padding-top: 1rem;
       padding-bottom: 4rem;
@@ -994,13 +1000,89 @@ const navLinks = [
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-accent-primary);
-    margin-top: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .section-footer {
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .section-footer a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .section-footer a:hover {
+    color: var(--color-text-primary);
+    text-decoration: underline;
   }
   
+  /* Large project cards for projects page - full width stacked */
+  .project-cards-large {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .project-cards-large .project-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 2rem;
+    padding: 2rem;
+  }
+
+  .project-cards-large .project-card .project-meta {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .project-cards-large .project-card h3 {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 1.5rem;
+  }
+
+  .project-cards-large .project-card p {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 1rem;
+    max-width: 55ch;
+  }
+
+  .project-cards-large .project-card .project-link {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: center;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .project-cards-large .project-card h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-cards-large .project-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   @media screen and (max-width: 900px) {
     .project-cards {
       grid-template-columns: 1fr;
       gap: 1rem;
+    }
+
+    .project-cards-large .project-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-cards-large .project-card .project-link {
+      margin-top: auto;
+      padding-top: 1rem;
     }
   }
 
@@ -1254,6 +1336,7 @@ const navLinks = [
     display: inline-block;
     padding: 0.625rem 1.25rem;
     border: 1px solid var(--color-text-primary);
+    border-radius: 0.25rem;
     color: var(--color-text-primary) !important;
     text-decoration: none !important;
     font-weight: 500;
@@ -1278,20 +1361,6 @@ const navLinks = [
   
   .btn-primary:hover {
     background: var(--color-text-secondary);
-  }
-  
-  @media screen and (max-width: 640px) {
-    .btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin-bottom: 0.75rem;
-    }
-    
-    section#connect .btn,
-    section#connecter .btn {
-      margin-right: 0;
-    }
   }
   
   @media screen and (max-width: 900px) {
@@ -1320,6 +1389,32 @@ const navLinks = [
     text-transform: uppercase;
     margin-top: -0.5rem;
     margin-bottom: 2rem;
+  }
+  
+  /* Project logo */
+  .project-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .project-logo img {
+    width: 160px;
+    height: auto;
+    opacity: 0.6;
+  }
+  
+  :root[data-theme="light"] .project-logo img {
+    filter: invert(1);
+    opacity: 0.4;
+  }
+  
+  /* Lead paragraph for page introductions */
+  .lead {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
   }
   
   /* Seminars list */
@@ -1409,6 +1504,17 @@ const navLinks = [
   }
   
   @media screen and (max-width: 640px) {
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    section#connect .btn {
+      margin-right: 0;
+    }
+    
     .editorial-item {
       padding-left: 1rem;
     }
