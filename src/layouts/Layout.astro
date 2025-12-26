@@ -20,6 +20,7 @@ const { title = 'HΩ', description = defaultDescription } = Astro.props;
 const localePath = isFrench ? '/fr' : '';
 
 const navLinks = [
+  { href: `${localePath || '/'}#projects`, label: isFrench ? 'Projets' : 'Projects' },
   { href: `${localePath}/get-involved`, label: isFrench ? 'S\'impliquer' : 'Get Involved' },
   { href: `${localePath}/acknowledgements`, label: isFrench ? 'Remerciements' : 'Acknowledgements' },
   { href: 'https://horizonomega.substack.com/', label: 'Blog', external: true },
