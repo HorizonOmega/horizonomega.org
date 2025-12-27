@@ -30,7 +30,7 @@ The RSS feed URL is `https://horizonomega.substack.com/feed`.
 
 ## Components
 
-- `BlogPosts.astro` — Displays latest 3 blog posts as cards (fetched from RSS)
+- `BlogPosts.astro` — Displays latest 5 blog posts as a list (fetches 10 from RSS, filters out "Introducing Horizon Events")
 - `LanguageSwitcher.astro` — EN/FR toggle
 - `ThemeToggle.astro` — Light/dark mode
 
@@ -38,5 +38,5 @@ The RSS feed URL is `https://horizonomega.substack.com/feed`.
 
 All global styles are in `src/layouts/Layout.astro` under `<style is:global>`.
 
-Card patterns: `.project-card`, `.blog-card` — similar structure with hover effects.
-
+Card patterns: `.project-card` — similar structure with hover effects.
+Blog list patterns: `.blog-list`, `.blog-item`, `.blog-more`.
