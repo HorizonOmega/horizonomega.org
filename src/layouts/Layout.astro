@@ -83,25 +83,101 @@ const navLinks = [
         }
       })();
     </script>
-    <header class="site-header">
+    <header class="site-header" data-menu-open="false">
       <a href={localePath || '/'} class="site-logo">HΩ</a>
-      <nav class="site-nav">
-        {navLinks.map(link => (
-          <a 
-            href={link.href} 
-            class="nav-link"
-            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          >
-            {link.label}
-            {link.external && <span class="external-icon" aria-hidden="true">↗</span>}
-          </a>
-        ))}
-      </nav>
-      <div class="site-toolbar">
-        <LanguageSwitcher />
-        <ThemeToggle />
+      <div class="site-actions">
+        <div class="site-menu" id="site-menu" data-site-menu>
+          <nav class="site-nav">
+            {navLinks.map(link => (
+              <a 
+                href={link.href} 
+                class="nav-link"
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {link.label}
+                {link.external && <span class="external-icon" aria-hidden="true">↗</span>}
+              </a>
+            ))}
+          </nav>
+          <div class="site-toolbar">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
+        </div>
+        <button
+          class="menu-toggle"
+          type="button"
+          data-menu-toggle
+          data-label-open={isFrench ? 'Ouvrir le menu' : 'Open menu'}
+          data-label-close={isFrench ? 'Fermer le menu' : 'Close menu'}
+          aria-controls="site-menu"
+          aria-expanded="false"
+          aria-label={isFrench ? 'Ouvrir le menu' : 'Open menu'}
+        >
+          <svg class="menu-toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="2" y1="4" x2="14" y2="4" />
+            <line x1="2" y1="8" x2="14" y2="8" />
+            <line x1="2" y1="12" x2="14" y2="12" />
+          </svg>
+          <span class="menu-toggle-text">Menu</span>
+        </button>
       </div>
     </header>
+    <script is:inline>
+      (function () {
+        const header = document.querySelector('.site-header');
+        if (!header) return;
+        const toggle = header.querySelector('[data-menu-toggle]');
+        const menu = header.querySelector('[data-site-menu]');
+        if (!toggle || !menu) return;
+
+        const openLabel = toggle.dataset.labelOpen || 'Open menu';
+        const closeLabel = toggle.dataset.labelClose || 'Close menu';
+
+        header.dataset.menuReady = 'true';
+
+        const setOpen = (open) => {
+          header.dataset.menuOpen = open ? 'true' : 'false';
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          toggle.setAttribute('aria-label', open ? closeLabel : openLabel);
+          if (window.matchMedia('(max-width: 640px)').matches) {
+            menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+          } else {
+            menu.removeAttribute('aria-hidden');
+          }
+        };
+
+        setOpen(false);
+
+        toggle.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const isOpen = header.dataset.menuOpen === 'true';
+          setOpen(!isOpen);
+        });
+
+        document.addEventListener('click', (event) => {
+          if (header.dataset.menuOpen !== 'true') return;
+          if (!header.contains(event.target)) {
+            setOpen(false);
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && header.dataset.menuOpen === 'true') {
+            setOpen(false);
+            toggle.focus();
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.matchMedia('(min-width: 641px)').matches) {
+            setOpen(false);
+            return;
+          }
+          setOpen(header.dataset.menuOpen === 'true');
+        });
+      })();
+    </script>
     <article>
       <slot />
     </article>
@@ -284,11 +360,12 @@ const navLinks = [
   .site-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 1.5rem;
     max-width: 85ch;
+    width: 100%;
     margin: 0 auto;
     padding: 1.5rem 0;
+    position: relative;
   }
   
   .site-logo {
@@ -303,14 +380,25 @@ const navLinks = [
   .site-logo:hover {
     opacity: 0.7;
   }
+
+  .site-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+    position: relative;
+  }
+  
+  .site-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
   
   .site-nav {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    flex: 1;
-    justify-content: flex-end;
-    margin-right: 1rem;
   }
   
   .nav-link {
@@ -346,10 +434,42 @@ const navLinks = [
     align-items: center;
     gap: 0.5rem;
   }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    font-family: inherit;
+    line-height: 1;
+    min-height: 2.75rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: background 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .menu-toggle:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+  }
+  
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--color-outline);
+    outline-offset: 2px;
+  }
   
   @media (max-width: 640px) {
     .site-header {
-      flex-wrap: wrap;
       padding: 1rem 0;
       gap: 1rem;
     }
@@ -358,17 +478,101 @@ const navLinks = [
       font-size: 1.75rem;
     }
     
-    .site-nav {
-      order: 3;
+    .site-header:not([data-menu-ready='true']) {
+      flex-wrap: wrap;
+    }
+
+    .site-header:not([data-menu-ready='true']) .site-actions {
       width: 100%;
       justify-content: center;
-      margin-right: 0;
+      margin-left: 0;
+    }
+    
+    .site-header:not([data-menu-ready='true']) .site-menu {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .site-header:not([data-menu-ready='true']) .site-nav {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 0;
     }
     
-    .nav-link {
+    .site-header:not([data-menu-ready='true']) .nav-link {
       padding: 0.5rem 0.625rem;
       font-size: 0.8125rem;
+    }
+
+    .site-header:not([data-menu-ready='true']) .menu-toggle {
+      display: none;
+    }
+
+    .site-header[data-menu-ready='true'] .site-menu {
+      position: absolute;
+      top: calc(100% + 0.125rem);
+      right: 0;
+      width: min(15rem, calc(100vw - 2rem));
+      padding: 0.375rem;
+      border-radius: 0.375rem;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.375rem;
+      opacity: 0;
+      transform: translateY(-1px);
+      transform-origin: top right;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 10;
+    }
+
+    .site-header[data-menu-ready='true'] .site-menu::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: 1.25rem;
+      width: 8px;
+      height: 8px;
+      background: var(--color-surface);
+      border-left: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+    
+    .site-header[data-menu-ready='true'][data-menu-open='true'] .site-menu {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    .site-header[data-menu-ready='true'] .site-nav {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    
+    .site-header[data-menu-ready='true'] .nav-link {
+      width: 100%;
+      justify-content: space-between;
+      padding: 0.5rem 0.5rem;
+      font-size: 0.875rem;
+      border-radius: 0.3125rem;
+    }
+    
+    .site-header[data-menu-ready='true'] .site-toolbar {
+      justify-content: flex-start;
+      padding: 0.25rem 0.5rem 0.125rem;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    
+    .menu-toggle {
+      display: inline-flex;
     }
   }
   
