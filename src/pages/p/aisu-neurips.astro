@@ -1,0 +1,275 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import events from '../../data/aisu-neurips.json';
+
+type AISUEvent = {
+  id: string;
+  year: number;
+  conference: string;
+  date: string;
+  location: string;
+  venue: string;
+  participants: number;
+  organizations: string[];
+  organizers: string[];
+  partners: string[];
+  funders: string[];
+  lightningTalks: { speaker: string; title: string | null }[];
+  discussions: { facilitator: string; topic: string }[];
+  testimonials: { quote: string; author: string }[];
+  archiveUrl: string | null;
+};
+
+const allEvents = (events as AISUEvent[]).sort((a, b) => b.year - a.year);
+const totalParticipants = allEvents.reduce((sum, e) => sum + e.participants, 0);
+---
+
+<Layout title="AISU@NeurIPS – HΩ">
+  <h1>AISU@NeurIPS</h1>
+  
+  <p class="project-meta-header">2018–2022 · {totalParticipants}+ researchers</p>
+  
+  <p class="lead">The AI Safety Unconference at NeurIPS brought together researchers for lightning talks, facilitated discussions, and collaboration. Over three editions, we hosted participants from leading AI safety organizations worldwide.</p>
+
+  {allEvents.map(event => (
+    <section class="year-section" id={event.id}>
+      <div class="year-header">
+        <h2>{event.year}</h2>
+        <div class="year-meta">
+          <span class="location">{event.location}</span>
+          <span class="date">{event.date}</span>
+          <span class="participants">~{event.participants} participants</span>
+        </div>
+      </div>
+      
+      {event.organizations.length > 0 && (
+        <p class="orgs">
+          Participants from {event.organizations.join(', ')}.
+        </p>
+      )}
+      
+      {event.lightningTalks.length > 0 && (
+        <div class="content-block">
+          <h3>Lightning talks</h3>
+          <div class="talks-grid">
+            {event.lightningTalks.map(talk => (
+              <div class="talk-item">
+                <span class="speaker">{talk.speaker}</span>
+                {talk.title && <span class="title">{talk.title}</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {event.discussions.length > 0 && (
+        <div class="content-block">
+          <h3>Facilitated discussions</h3>
+          <div class="talks-grid">
+            {event.discussions.map(d => (
+              <div class="talk-item">
+                <span class="speaker">{d.facilitator}</span>
+                <span class="title">{d.topic}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {event.testimonials.length > 0 && (
+        <div class="content-block">
+          <h3>Testimonials</h3>
+          <div class="testimonials">
+            {event.testimonials.map(t => (
+              <blockquote>
+                "{t.quote}"
+                <cite>— {t.author}</cite>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <footer class="year-footer">
+        <p class="credits">
+          <strong>Organized by:</strong> {event.organizers.join(', ')}
+          {event.partners.length > 0 && <><br /><strong>Partners:</strong> {event.partners.join(', ')}</>}
+          {event.funders.length > 0 && <><br /><strong>Supported by:</strong> {event.funders.join(', ')}</>}
+        </p>
+        {event.archiveUrl && (
+          <a href={event.archiveUrl} class="archive-btn" target="_blank" rel="noopener noreferrer">
+            View archived website ↗
+          </a>
+        )}
+      </footer>
+    </section>
+  ))}
+</Layout>
+
+<style>
+  .lead {
+    margin-bottom: 3rem;
+  }
+  
+  .year-section {
+    margin-bottom: 4rem;
+  }
+  
+  .year-section:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  .year-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .year-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 0.5rem 0;
+    line-height: 1;
+    color: var(--color-text-primary);
+  }
+  
+  .year-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+  
+  .year-meta .location {
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  
+  .year-meta .date {
+    color: var(--color-text-secondary);
+  }
+  
+  .year-meta .participants {
+    color: var(--color-text-muted);
+  }
+  
+  .orgs {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .content-block {
+    margin-bottom: 2rem;
+  }
+  
+  .content-block h3 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem 0;
+  }
+  
+  .talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .talk-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.875rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+  
+  .talk-item .speaker {
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  
+  .talk-item .title {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .testimonials {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .testimonials blockquote {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-border-strong);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+  
+  .testimonials cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+  
+  .year-footer {
+    margin-top: 1.5rem;
+  }
+  
+  .credits {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 1rem 0;
+  }
+  
+  .credits strong {
+    color: var(--color-text-secondary);
+  }
+  
+  .archive-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 0.875rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    transition: all 0.15s ease;
+  }
+  
+  .archive-btn:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-strong);
+  }
+  
+  @media (max-width: 640px) {
+    .year-header h2 {
+      font-size: 2.25rem;
+    }
+    
+    .year-meta {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .talks-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

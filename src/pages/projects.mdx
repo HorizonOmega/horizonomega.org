@@ -1,22 +1,17 @@
 ---
 layout: ../layouts/Layout.astro
-title: HΩ
+title: Projects – HΩ
 ---
-import BlogPosts from '../components/BlogPosts.astro';
 
-<div class="hero">
+# Projects
 
-<h1 class="hero-title"><span class="hero-title-horizon">Horizon</span> <span class="hero-title-omega">Omega</span></h1>
+<div class="projects-page">
 
-<div class="purpose-statement">We advance AI safety <span class="purpose-detail">through collaboration, research, and education.</span></div>
+<section>
 
-</div>
+## Current
 
-<section id="projects">
-
-## Projects
-
-<div class="project-cards">
+<div class="project-cards project-cards-large">
 
 <a href="/p/guaranteed-safe-ai" class="project-card">
 <span class="project-meta">Since 2024 · 275+ subscribers</span>
@@ -41,26 +36,31 @@ import BlogPosts from '../components/BlogPosts.astro';
 
 </div>
 
-<p class="section-footer"><a href="/projects">View all projects →</a></p>
+</section>
+
+<section>
+
+## Past
+
+<div class="project-cards project-cards-large">
+
+<a href="https://aisafetyeventsandtraining.substack.com/" class="project-card" target="_blank" rel="noopener noreferrer">
+<span class="project-meta">2023–2025 · 1000+ subscribers</span>
+<h3>AI Safety Events & Training</h3>
+<p>Weekly newsletter listing newly announced AI safety events and training programs worldwide, both online and in-person.</p>
+<span class="project-link">View on Substack ↗</span>
+</a>
+
+<a href="/p/aisu-neurips" class="project-card">
+<span class="project-meta">2018–2022 · 185+ researchers</span>
+<h3>AI Safety Unconference @ NeurIPS</h3>
+<p>The original unconference series at NeurIPS, bringing together researchers from leading organizations.</p>
+<span class="project-link">View archive →</span>
+</a>
+
+</div>
 
 </section>
 
-<section id="blog">
+</div>
 
-## From the blog
-
-<BlogPosts />
-
-</section>
-
-<section id="connect">
-
-## Connect
-
-Attend our events, volunteer, partner with us, or support our work.
-
-<a href="https://horizonomega.substack.com/" class="btn" target="_blank" rel="noopener noreferrer">Subscribe</a>
-<a href="https://donate.stripe.com/14A5kCbHz5MFgGo3cG9ws06" class="btn" target="_blank" rel="noopener noreferrer">Donate</a>
-<a href="/connect" class="btn">Get in touch</a>
-
-</section>

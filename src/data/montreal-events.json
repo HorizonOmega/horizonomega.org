@@ -1,0 +1,191 @@
+[
+  {
+    "id": "2025-12-16-ai-consciousness",
+    "date": "2025-12-16",
+    "title": "Can AI systems be conscious? How could we know? And why does it matter?",
+    "time": "19:00–21:00",
+    "speakers": ["Joaquim Streicher (Ph.D. candidate in Neuroscience; co-founder MONIC)"],
+    "description": "Presentation on the debate around AI consciousness (current vs future models), how consciousness might be assessed, and why avoiding false negatives/false positives matters ethically; includes introduction to MONIC. Recommended readings: Bayne et al. (2024), Butlin et al. (2023), Chalmers (2023), Colombatto & Fleming (2024), Martin, Streicher, O'Dea (2025).",
+    "links": [
+      {"label": "Slides", "url": "https://drive.google.com/file/d/1gr-Q0h_g23859Ey8J9z9rkUZAY_kypl_/view?usp=sharing"}
+    ]
+  },
+  {
+    "id": "2025-12-02-veracity-persuasive-ai",
+    "date": "2025-12-02",
+    "title": "Veracity in the Age of Persuasive AI",
+    "time": "19:00–21:00",
+    "speakers": ["Taylor Lynn Curtis (Mila)"],
+    "description": "Talk on the tension between AI persuasion and ethical deployment; introduces \"Veracity,\" a tool using AI to detect/mitigate misinformation and support data quality/user protection; closes with governance insights."
+  },
+  {
+    "id": "2025-11-27-tipping-points",
+    "date": "2025-11-27",
+    "title": "Tipping Points & Early Warnings: Complex Systems Theory on Catastrophic Transitions",
+    "time": "19:00–20:30",
+    "description": "Discussion of Scheffer et al. (Nature, 2009) on generic early-warning signals near tipping points (e.g., \"critical slowing down\"), and implications for AI governance.",
+    "links": [
+      {"label": "Paper (Scheffer et al.)", "url": "https://pdodds.w3.uvm.edu/files/papers/others/2009/scheffer2009a.pdf"}
+    ]
+  },
+  {
+    "id": "2025-11-25-pessimists-archive",
+    "date": "2025-11-25",
+    "title": "Pessimists Archive",
+    "time": "19:00–20:30",
+    "speakers": ["Emma Kondrup"],
+    "description": "Activity/discussion using pessimistsarchive.org to compare historical \"new technology panic\" headlines (cars/radio/TV) with modern AI narratives; explores when \"AI exceptionalism\" (or \"existentialism\") is justified.",
+    "links": [
+      {"label": "Pessimists Archive", "url": "https://pessimistsarchive.org"}
+    ]
+  },
+  {
+    "id": "2025-11-22-defacc-hackathon",
+    "date": "2025-11-22",
+    "endDate": "2025-11-23",
+    "title": "Defensive Acceleration Hackathon",
+    "time": "2025-11-22 10:00 → 2025-11-23 19:00",
+    "tags": ["Hackathon"],
+    "description": "Hackathon focused on \"defensive acceleration\" (def/acc): building tech to strengthen defenses against major threats (pandemics, cybercrime, and AI risk). Prize pool: $20,000 USD. Co-organized with Apart Research."
+  },
+  {
+    "id": "2025-11-20-neuronpedia-101",
+    "date": "2025-11-20",
+    "title": "Neuronpedia 101",
+    "time": "19:00–20:30",
+    "description": "Discussion + demo introducing Neuronpedia concepts (models, sparse autoencoders, features/lists, feature pages), running small experiments (search, activation tests), and ending with ways to contribute.",
+    "links": [
+      {"label": "Neuronpedia", "url": "https://www.neuronpedia.org/"}
+    ]
+  },
+  {
+    "id": "2025-11-18-citizens-assembly",
+    "date": "2025-11-18",
+    "title": "Co-design a National Citizens' Assembly on Superintelligence",
+    "time": "19:00–20:30",
+    "tags": ["Workshop"],
+    "description": "Short workshop to co-design a National Citizens' Assembly on Superintelligence for Canada; intended outputs: a Concept Note, a Consortium Intent Memo, and an invite list."
+  },
+  {
+    "id": "2025-11-13-canada-budget-ai-risk",
+    "date": "2025-11-13",
+    "title": "Canada's 2025 Budget vs AI risk",
+    "time": "19:00–20:30",
+    "description": "Discussion of AI-related parts of Canada's 2025 federal budget and how they map onto AI risk reduction / threat models (power concentration, epistemics, bio, autonomy, misuse, systemic risk, etc.)."
+  },
+  {
+    "id": "2025-11-11-reading-group",
+    "date": "2025-11-11",
+    "title": "If Anyone Reads It, Everyone's Welcome",
+    "time": "19:00–21:00",
+    "tags": ["Reading group"],
+    "description": "Small gathering/reading-group discussion of \"If Anyone Builds It, Everyone Dies,\" using author-suggested discussion questions. Co-organized with PauseAI Montréal.",
+    "links": [
+      {"label": "PauseAI Montréal", "url": "https://pauseai.ca/montreal"},
+      {"label": "Discussion doc", "url": "https://docs.google.com/document/d/1v5kwG348gJl1oEhHgOecmVhYt3chNhHgOkRzBnq6s84/edit?usp=sharing"}
+    ]
+  },
+  {
+    "id": "2025-11-04-intl-ai-safety-report",
+    "date": "2025-11-04",
+    "title": "International AI Safety Report – First Key Update",
+    "time": "19:00–20:30",
+    "description": "Walkthrough/discussion of the International AI Safety Report \"First Key Update: Capabilities and Risk Implications\" (dated 2025-10-14), covering recent capability gains, longer-horizon agents, and implications for bio/cyber risks, monitoring/controllability, and labor-market impacts.",
+    "links": [
+      {"label": "Report", "url": "https://internationalaisafetyreport.org/publication/first-key-update-capabilities-and-risk-implications"}
+    ]
+  },
+  {
+    "id": "2025-10-30-ai-strategy-survey",
+    "date": "2025-10-30",
+    "title": "Canada's AI Strategy Survey Jam",
+    "time": "19:00–20:30",
+    "tags": ["Workshop"],
+    "description": "Hands-on group session to complete the Government of Canada's consultation survey for the next national AI strategy; includes short briefing, 1-hour survey fill, and wrap-up.",
+    "links": [
+      {"label": "Survey", "url": "https://ised-isde.canada.ca/site/ised/en/public-consultations/help-define-next-chapter-canadas-ai-leadership"}
+    ]
+  },
+  {
+    "id": "2025-10-28-if-anyone-builds-it",
+    "date": "2025-10-28",
+    "title": "If Anyone Builds It, Everyone Dies",
+    "time": "19:00–21:00",
+    "description": "Launch/discussion event for \"If Anyone Builds It, Everyone Dies\" (Yudkowsky & Soares): primer on claims, then discussion + audience Q&A on technical/policy/institutional risk-reduction moves.",
+    "links": [
+      {"label": "Book site", "url": "https://ifanyonebuildsit.com/"}
+    ]
+  },
+  {
+    "id": "2025-10-23-definition-agi",
+    "date": "2025-10-23",
+    "title": "A Definition of AGI",
+    "time": "19:00–20:30",
+    "description": "Walkthrough of a proposal operationalizing AGI as matching the cognitive versatility/proficiency of a well-educated adult, grounded in the CHC model; emphasizes concrete tests over a single benchmark.",
+    "links": [
+      {"label": "AGI Definition", "url": "https://www.agidefinition.ai/"}
+    ]
+  },
+  {
+    "id": "2025-10-21-pauseai-montreal",
+    "date": "2025-10-21",
+    "title": "Introducing PauseAI Montréal",
+    "time": "19:00–20:30",
+    "speakers": ["Nik Lacombe"],
+    "description": "Introduction + discussion of PauseAI and its Montréal group; focuses on mitigating risks by convincing governments to pause development of superhuman AI.",
+    "links": [
+      {"label": "PauseAI Montréal", "url": "https://pauseai.ca/montreal"}
+    ]
+  },
+  {
+    "id": "2025-10-16-aisafety-info",
+    "date": "2025-10-16",
+    "title": "Introducing aisafety.info",
+    "time": "19:00–20:30",
+    "speakers": ["Olivier Coutu"],
+    "description": "Overview of aisafety.info: intro to existential AI risk, large FAQ, \"Stampy\" chatbot, and an alignment resources dataset; includes Q&A and requests for improvement suggestions/help.",
+    "links": [
+      {"label": "aisafety.info", "url": "https://aisafety.info/"}
+    ]
+  },
+  {
+    "id": "2025-10-14-ai-red-lines",
+    "date": "2025-10-14",
+    "title": "Global Call for AI Red Lines",
+    "time": "19:00–20:30",
+    "description": "Discussion of the Global Call for AI Red Lines and what \"do-not-cross\" limits could look like in practice (prohibitions, treaty precedents, and Canadian roles).",
+    "links": [
+      {"label": "AI Red Lines", "url": "https://red-lines.ai/"}
+    ]
+  },
+  {
+    "id": "2025-10-07-social-media-safety",
+    "date": "2025-10-07",
+    "title": "Social Media Safety and the Unplug project",
+    "time": "19:00–20:30",
+    "speakers": ["Evan Lombardi"],
+    "description": "Impacts of social media recommendation algorithms on mental health; survey of online manipulation/dark patterns, scams/deepfakes, extremist/explicit content, and mis/dis/malinformation; closes with an overview of the Unplug Project."
+  },
+  {
+    "id": "2025-10-02-verifying-neural-network",
+    "date": "2025-10-02",
+    "title": "Verifying a toy neural network",
+    "time": "19:00–20:30",
+    "speakers": ["Samuel Gélineau"],
+    "description": "Demo/project talk showing how to verify a neural network satisfies a safety property (beyond tested inputs) by adapting range analysis ideas to network weights.",
+    "links": [
+      {"label": "Parity Bot", "url": "https://gelisam.com/parity-bot"}
+    ]
+  },
+  {
+    "id": "2025-09-16-guaranteed-safe-ai",
+    "date": "2025-09-16",
+    "title": "Towards Guaranteed Safe AI",
+    "time": "19:00–20:30",
+    "speakers": ["Orpheus Lummis"],
+    "description": "Presentation of core ideas from \"Towards Guaranteed Safe AI: A Framework for Ensuring Robust and Reliable AI Systems\", followed by Q&A and open discussion.",
+    "links": [
+      {"label": "Paper (arXiv)", "url": "https://arxiv.org/abs/2405.06624v3"}
+    ]
+  }
+]

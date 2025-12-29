@@ -1,0 +1,133 @@
+[
+  {
+    "title": "Safe Learning Under Irreversible Dynamics via Asking for Help",
+    "date": "2025-12",
+    "speaker": "Benjamin Plaut",
+    "affiliation": "Postdoc at CHAI (Center for Human-Compatible AI)",
+    "abstract": "Standard online-learning algorithms with formal guarantees often rely on trying all possible behaviors, which is unsafe when some errors cannot be recovered from. This work allows a learning agent to **ask for help** from a mentor and to transfer knowledge between similar states. The resulting algorithm learns both safely and effectively.",
+    "readings": [
+      { "title": "arXiv:2502.14043", "url": "https://arxiv.org/abs/2502.14043" }
+    ],
+    "recording": "https://youtu.be/nLHmSSG7Y2I"
+  },
+  {
+    "title": "When AI met AR",
+    "date": "2025-11",
+    "speaker": "Clark Barrett",
+    "affiliation": "Stanford Center for Automated Reasoning",
+    "abstract": "Artificial Intelligence and Automated Reasoning have both advanced quickly in recent years. This talk explores how combining them can help address AI safety, including verifiable code generation and learning-enhanced reasoning systems.",
+    "readings": [
+      { "title": "arXiv:2305.11087", "url": "https://arxiv.org/abs/2305.11087" },
+      { "title": "Clover (arXiv)", "url": "https://arxiv.org/abs/2310.17807" }
+    ],
+    "recording": "https://youtu.be/AxASkEW8gYE"
+  },
+  {
+    "title": "Model-Based Soft Maximization of Suitable Metrics of Long-Term Human Power",
+    "date": "2025-10",
+    "speaker": "Jobst Heitzig",
+    "affiliation": "Senior Mathematician, AI Safety Designer",
+    "abstract": "Power is a key concept in AI safety. This talk explores promoting safety and wellbeing by forcing AI agents to explicitly empower humans, using a principled approach to design a parameterizable objective function representing long-term aggregate of human power.",
+    "readings": [
+      { "title": "arXiv:2508.00159", "url": "https://arxiv.org/abs/2508.00159" }
+    ],
+    "recording": "https://youtu.be/2qQS8NWrUuU"
+  },
+  {
+    "title": "Towards Safe and Hallucination-Free Coding AIs",
+    "date": "2025-09",
+    "speaker": "GasStationManager",
+    "affiliation": "Independent Researcher",
+    "abstract": "Modern LLM coding assistants pose serious security risks. The talk argues for protocols that require AI-generated code to come with **machine-checkable proofs** so humans can be assured of safety and correctness.",
+    "readings": [
+      { "title": "Blog post", "url": "https://gasstationmanager.github.io/ai/2024/11/04/a-proposal.html" },
+      { "title": "Provably-Correct Vibe Coding", "url": "http://provablycorrectvibecoding.com/" }
+    ],
+    "recording": "https://youtu.be/AhYUoUzAqf8"
+  },
+  {
+    "title": "Engineering Rational Cooperative AI via Inverse Planning and Probabilistic Programming",
+    "date": "2025-07",
+    "speaker": "Tan Zhi Xuan",
+    "affiliation": "National University of Singapore",
+    "abstract": "How to build cooperative machines that model and understand human minds. Introduces **Sequential Inverse Plan Search (SIPS)**, combining online model-based planners and sequential Monte Carlo inference to infer human goals faster than real time.",
+    "readings": [
+      { "title": "NeurIPS 2020", "url": "https://proceedings.neurips.cc/paper/2020/hash/df3aebc649f9e3b674eeb790a4da224e-Abstract.html" },
+      { "title": "arXiv:2402.17930", "url": "https://arxiv.org/abs/2402.17930" },
+      { "title": "arXiv:2402.13399", "url": "https://arxiv.org/abs/2402.13399" }
+    ],
+    "recording": "https://youtu.be/uiJ1dmmNL0k"
+  },
+  {
+    "title": "Using PDDL Planning to Ensure Safety in LLM-based Agents",
+    "date": "2025-01",
+    "speaker": "Agustín Martinez Suñé",
+    "affiliation": "University of Oxford",
+    "abstract": "Integrates **PDDL** symbolic planning with LLM-based agents to enforce safety constraints during execution. Experiments show robustness under severe input perturbations and adversarial attacks.",
+    "recording": "https://youtu.be/anbsnwnMpf8"
+  },
+  {
+    "title": "Compact Proofs of Model Performance via Mechanistic Interpretability",
+    "date": "2024-12",
+    "speaker": "Louis Jaburi",
+    "affiliation": "Independent researcher",
+    "abstract": "Proposes constructing rigorous, compact proofs about neural-network behavior using mechanistic interpretability. Discusses challenges and scaling directions for formal verification.",
+    "readings": [
+      { "title": "arXiv:2406.11779", "url": "https://arxiv.org/abs/2406.11779" },
+      { "title": "arXiv:2410.07476", "url": "https://arxiv.org/abs/2410.07476" }
+    ],
+    "recording": "https://youtu.be/m_2JnJglx9g"
+  },
+  {
+    "title": "Bayesian oracles and safety bounds",
+    "date": "2024-11",
+    "speaker": "Yoshua Bengio",
+    "affiliation": "Mila, Université de Montréal",
+    "abstract": "Investigates safety advantages of training a **Bayesian oracle** to estimate P(answer | question, data). Explores catastrophic-risk scenarios, failure modes, and using the oracle for conservative risk bounds.",
+    "recording": "https://youtu.be/SIAZKT-VJIU"
+  },
+  {
+    "title": "Constructability: Designing plain-coded AI systems",
+    "date": "2024-08",
+    "speaker": "Charbel-Raphaël Ségerie & Épiphanie Gédéon",
+    "affiliation": "CeSIA",
+    "abstract": "Presents **constructability**, a design paradigm for AI systems that are interpretable and reviewable by design. Shares feasibility arguments, prototypes, and research directions.",
+    "recording": "https://youtu.be/AsqbMcfGIZw"
+  },
+  {
+    "title": "Proving safety for narrow AI outputs",
+    "date": "2024-07",
+    "speaker": "Evan Miyazono",
+    "affiliation": "Atlas Computing",
+    "abstract": "Identifies domains where AI can deliver capabilities with **quantitative guarantees** against objective safety criteria. Maps a path to generating software with formal proofs of specification compliance.",
+    "recording": "https://youtu.be/RPiLCy31d1E"
+  },
+  {
+    "title": "Gaia: Distributed planetary-scale AI safety",
+    "date": "2024-06",
+    "speaker": "Rafael Kaufmann",
+    "affiliation": "Gaia",
+    "abstract": "Proposes **Gaia**, a decentralized, crowdsourced model-based safety oracle for a future with billions of powerful AI agents. Focuses on mitigating cascading, systemic risks.",
+    "recording": "https://youtu.be/47r5P6xtjms"
+  },
+  {
+    "title": "Provable AI Safety",
+    "date": "2024-05",
+    "speaker": "Steve Omohundro",
+    "abstract": "An approach to AI safety grounded in the **laws of physics** and **mathematical proof** as the only guaranteed constraints for powerful AGI.",
+    "recording": "https://youtu.be/J_HSGmD6dkI"
+  },
+  {
+    "title": "Synthesizing Gatekeepers for Safe Reinforcement Learning",
+    "date": "2024-04",
+    "speaker": "Justice Sefas",
+    "abstract": "Demonstrates **gatekeepers** that block unsafe actions using model checking and neural control barrier functions to enable safe optimization.",
+    "recording": "https://youtu.be/Ay64UEB6jTc"
+  },
+  {
+    "title": "Verifying Global Properties of Neural Networks",
+    "date": "2024-04",
+    "speaker": "Roman Soletskyi",
+    "abstract": "Verifiable RL produces mathematical proofs that agents meet requirements. Studies verification-complexity scaling and suggests new approaches to accelerate verification."
+  }
+]

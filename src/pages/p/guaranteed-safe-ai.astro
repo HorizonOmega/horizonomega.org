@@ -1,0 +1,318 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import seminars from '../../data/gsai-seminars.json';
+
+type Seminar = {
+  title: string;
+  date: string;
+  speaker: string;
+  affiliation?: string;
+  abstract: string;
+  readings?: { title: string; url: string }[];
+  recording?: string;
+  upcoming?: boolean;
+};
+
+const allSeminars = seminars as Seminar[];
+const upcomingSeminar = allSeminars.find(s => s.upcoming);
+const pastSeminars = allSeminars.filter(s => !s.upcoming);
+
+// Group by year
+const seminarsByYear = pastSeminars.reduce((acc, seminar) => {
+  const year = seminar.date.split('-')[0];
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(seminar);
+  return acc;
+}, {} as Record<string, Seminar[]>);
+
+const years = Object.keys(seminarsByYear).sort((a, b) => parseInt(b) - parseInt(a));
+
+const formatDate = (dateStr: string) => {
+  const [year, month] = dateStr.split('-');
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[parseInt(month) - 1]} ${year}`;
+};
+
+const formatMonth = (dateStr: string) => {
+  const month = dateStr.split('-')[1];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months[parseInt(month) - 1];
+};
+---
+
+<Layout title="Guaranteed Safe AI Seminars – HΩ">
+  <h1>Guaranteed Safe AI Seminars</h1>
+  
+  <p class="project-meta-header">Since April 2024</p>
+  
+  <p class="lead">Technical talks advancing AI with quantitative safety guarantees. For context on the research agenda, see <a href="https://arxiv.org/abs/2405.06624" target="_blank" rel="noopener noreferrer">Towards Guaranteed Safe AI</a>.</p>
+  
+  {upcomingSeminar && (
+    <>
+      <section class="next-seminar">
+        <h2>Next seminar</h2>
+        <div class="seminar-card">
+          <div class="seminar-card-date">
+            <span class="month">{formatMonth(upcomingSeminar.date)}</span>
+          </div>
+          <div class="seminar-card-content">
+            <h3>{upcomingSeminar.title}</h3>
+            <p class="seminar-card-speaker">
+              {upcomingSeminar.speaker}
+              {upcomingSeminar.affiliation && <span class="affiliation"> · {upcomingSeminar.affiliation}</span>}
+            </p>
+            <p class="seminar-card-abstract" set:html={upcomingSeminar.abstract.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+            <a href="https://luma.com/guaranteedsafeaiseminars" class="btn" target="_blank" rel="noopener noreferrer">Register on Luma ↗</a>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+  
+  <section>
+    <h2>Past seminars</h2>
+    
+    {years.map(year => (
+      <div class="seminars-year">
+        <h3 class="year-heading">{year}</h3>
+        <div class="seminars-grid">
+          {seminarsByYear[year].map(seminar => (
+            <div class="seminar-item">
+              <div class="seminar-date">{formatMonth(seminar.date)}</div>
+              <div class="seminar-content">
+                <h4>{seminar.title}</h4>
+                <p class="seminar-speaker">
+                  {seminar.speaker}
+                  {seminar.affiliation && <span class="affiliation"> · {seminar.affiliation}</span>}
+                </p>
+                <p class="seminar-abstract" set:html={seminar.abstract.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+                <div class="seminar-links">
+                  {seminar.recording && (
+                    <a href={seminar.recording} class="link-recording" target="_blank" rel="noopener noreferrer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      Watch
+                    </a>
+                  )}
+                  {seminar.readings && seminar.readings.map(r => (
+                    <a href={r.url} class="link-paper" target="_blank" rel="noopener noreferrer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                      {r.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+  
+  <section>
+    <h2>Get involved</h2>
+    
+    <div class="editorial-grid">
+      <div class="editorial-item">
+        <strong><a href="mailto:team@horizonomega.org?subject=GSAI%20Speaker%20Proposal">Speak</a></strong> 
+        Propose a talk or suggest a speaker. We feature researchers working on formal verification, safe learning, interpretability, and related approaches.
+      </div>
+      
+      <div class="editorial-item">
+        <strong><a href="mailto:team@horizonomega.org?subject=GSAI%20Volunteering">Volunteer</a></strong> 
+        Help with seminar operations, research briefs, speaker outreach, or video editing.
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Stay updated</h2>
+    <p>Seminars are free and open to all. Register on Luma to get notified of upcoming talks.</p>
+    <a href="https://luma.com/guaranteedsafeaiseminars" class="btn" target="_blank" rel="noopener noreferrer">Subscribe on Luma ↗</a>
+  </section>
+</Layout>
+
+<style>
+  .next-seminar {
+    margin-bottom: 0;
+  }
+  
+  .seminar-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .seminar-card-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 3.5rem;
+    padding-top: 0.25rem;
+  }
+  
+  .seminar-card-date .month {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+  
+  .seminar-card-content h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+  }
+  
+  .seminar-card-speaker {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 1rem 0;
+  }
+  
+  .seminar-card-speaker .affiliation {
+    color: var(--color-text-muted);
+  }
+  
+  .seminar-card-abstract {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.25rem 0;
+  }
+  
+  .year-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 2.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .year-heading:first-child {
+    margin-top: 1rem;
+  }
+  
+  .seminars-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .seminar-item {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .seminar-date {
+    min-width: 2.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    padding-top: 0.125rem;
+  }
+  
+  .seminar-content {
+    flex: 1;
+  }
+  
+  .seminar-content h4 {
+    font-size: 1rem;
+    font-variation-settings: 'wght' 600;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.4;
+  }
+  
+  .seminar-speaker {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .seminar-speaker .affiliation {
+    color: var(--color-text-muted);
+  }
+  
+  .seminar-abstract {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-tertiary);
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .seminar-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .seminar-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease;
+  }
+  
+  .seminar-links a svg {
+    flex-shrink: 0;
+  }
+  
+  .link-recording {
+    background: var(--color-surface-muted);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+  }
+  
+  .link-recording:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-strong);
+  }
+  
+  .link-paper {
+    color: var(--color-text-muted);
+  }
+  
+  .link-paper:hover {
+    color: var(--color-text-primary);
+    background: var(--color-surface-hover);
+  }
+  
+  @media (max-width: 640px) {
+    .seminar-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .seminar-card-date {
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+    
+    .seminar-item {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .seminar-date {
+      min-width: auto;
+    }
+  }
+</style>
