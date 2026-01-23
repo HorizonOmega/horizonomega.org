@@ -8,8 +8,8 @@
 		"start": "astro preview"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^4.3.4",
-		"astro": "^5.13.5"
+		"@astrojs/mdx": "^4.3.13",
+		"astro": "^5.16.15"
 	},
 	"engines": {
 		"node": ">=20.3.0",
